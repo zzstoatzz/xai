@@ -1,0 +1,10 @@
+[project]
+name = "xai"
+version = "0.1.0"
+description = "xai calls"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["marvin"]
+
+[project.optional-dependencies]
+dev = ["ipython", "ruff", "pytest"]

@@ -1,0 +1,1 @@
+always use modern python typing, i.e. T | None instead of Optional[T], list[T] instead of List[T]

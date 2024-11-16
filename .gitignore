@@ -1,0 +1,7 @@
+.env
+*.log
+*.jsonl
+*.json
+*.txt
+*.md
+*.egg-info
