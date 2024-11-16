@@ -4,6 +4,31 @@ proof-of-concept for using marvin to extract structured outputs using XAI as an 
 
 
 ```python
+# /// script
+# dependencies = ["marvin"]
+# ///
+
+import marvin
+from marvin.client import AsyncMarvinClient
+from openai import AsyncClient
+from pydantic import BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class XAISettings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", env_prefix="XAI_")
+
+    api_key: str
+    base_url: str = "https://api.x.ai/v1"
+
+
+class HTTPConcept(BaseModel):
+    """A concept in the snippet related to HTTP"""
+
+    name: str
+    description: str
+
+
 def main():
     xai_settings = XAISettings()
     openai_client = AsyncClient(
@@ -43,7 +68,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 ```console
