@@ -3,5 +3,4 @@
 *.jsonl
 *.json
 *.txt
-*.md
 *.egg-info

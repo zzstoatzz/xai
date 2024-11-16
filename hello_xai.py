@@ -24,7 +24,14 @@ class HTTPConcept(BaseModel):
 
 
 def main():
-    xai_curl_example = """
+    xai_settings = XAISettings()
+    openai_client = AsyncClient(
+        api_key=xai_settings.api_key,
+        base_url=xai_settings.base_url,
+    )
+
+    concepts = marvin.extract(
+        data="""
     curl https://api.x.ai/v1/chat/completions \\
       -H "Content-Type: application/json" \\
       -H "Authorization: Bearer $XAI_API_KEY" \\
@@ -43,16 +50,7 @@ def main():
           "stream": false,
           "temperature": 0
         }'
-    """
-
-    xai_settings = XAISettings()
-    openai_client = AsyncClient(
-        api_key=xai_settings.api_key,
-        base_url=xai_settings.base_url,
-    )
-
-    concepts = marvin.extract(
-        data=xai_curl_example,
+    """,
         target=HTTPConcept,
         client=AsyncMarvinClient(client=openai_client),
         model_kwargs={"model": "grok-beta"},
